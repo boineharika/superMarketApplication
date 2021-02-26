@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title><center>Contact Form</center></title>
+      <link rel="stylesheet" type="text/css" th:href="@{/css/contact.css}"/>
+      <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<!--<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+body {font-family: Arial, Helvetica, sans-serif;}
+* {box-sizing: border-box;}
+</style>
+</head> -->
+<body>
+<form th:action="@{/}" method="get">
+    <button class="btn btn-md btn-warning btn-block" type="Submit">Go To Login Page</button>
+</form>
+<h3>Contact Form</h3>
+
+<div class="container">
+  <form action="/action_page.php" th:action="@{/contact-us}"
+                  th:object="${contact}" method="post" class="form-horizontal"
+                  role="form">
+    <label for="firstName">First Name</label>
+    <input type="text" id="firstName" name="firstName" placeholder="Your name..">
+
+    <label for="lastName">Last Name</label>
+    <input type="text" id="lastName" name="lastName" placeholder="Your last name..">
+
+    <label for="country">Country</label>
+    <select id="country" name="country">
+      <option value="australia">Australia</option>
+      <option value="canada">Canada</option>
+      <option value="usa">USA</option>
+    </select>
+
+    <label for="subject">Subject</label>
+    <textarea id="subject" name="subject" placeholder="Write something.." style="height:200px"></textarea>
+
+    <input type="submit" value="Submit">
+  </form>
+</div>
+
+</body>
+</html>

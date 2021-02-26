@@ -1,0 +1,32 @@
+package com.learning.supermarket.freshmarket.controller;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.ModelAndView;
+
+import com.learning.supermarket.freshmarket.entity.UpComingProducts;
+import com.learning.supermarket.freshmarket.service.ProductService;
+
+@RestController
+public class ProductController {
+	@Autowired
+	ProductService productService;
+/*	@GetMapping("/upcoming-products")
+	public  List<UpComingProducts> getAllProducts() {
+		List<UpComingProducts> products = productService.getAllProducts();
+		return products;
+	}
+	*/
+	@GetMapping("/upcoming-products")
+	public  ModelAndView getAllProductsUi() {
+		List<UpComingProducts> products = productService.getAllProducts();
+		ModelAndView mv = new ModelAndView();
+		mv.addObject("AllProducts",products);
+		mv.setViewName("upComingProducts");
+		return mv;
+	}
+
+}

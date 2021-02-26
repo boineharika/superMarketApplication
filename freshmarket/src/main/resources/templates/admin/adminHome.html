@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<title>Spring Security Tutorial</title>
+<link rel="stylesheet" type="text/css" th:href="@{/css/table.css}" />
+<link rel="stylesheet" type="text/css" th:href="@{/css/header.css}" />
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<nav class="navbar navbar-inverse">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <a class="navbar-brand">
+       <h2>FreshMarket</h2>  
+        </a>
+      </div>
+      
+      <div class="nav navbar-nav navbar-right" style="display: inline">
+         <span th:utext="${userName}"></span>
+          <form th:action="@{/logout}" method="get">
+ 		<div class="panel-heading">
+               
+          
+        <button class="btn btn-md btn-danger btn-block" name="registration"
+                type="Submit" style="width:70px">Logout
+        </button>
+        </div>
+    	</form>
+      </div>
+
+    </div>
+  </nav>
+<body>
+	<div class="container">
+		
+		<div class="panel panel-primary">
+  <div class="panel-body">
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>ProductCode</th>
+          <th>ProductName</th>
+          <th>Price</th>
+          <th>PriceType</th>
+          <th>ProductType</th>
+          <th colspan="3">Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr th:each="prod : ${AllProducts}">
+          <td th:text="${prod.productCode}"></td>
+          <td th:text="${prod.productName}"></td>
+          <td th:text="${prod.productPrice}"></td>
+          <td th:text="${prod.priceType}"></td>
+          <td th:text="${prod.productType}"></td>
+          <td colspan="3">
+           <form th:action="@{/logout}" method="get" style="display: inline-block;">
+          	<button  class="btn btn-sm btn-primary" type="Submit" >Update</button>
+          	</form>
+          	
+          	 <form th:action="@{/admin/deleteProduct/}+${prod.id}" method="post" style="display: inline-block;">
+            		<button  class="btn btn-sm btn-primary " type="Submit" >Delete</button>
+            </form>
+            
+             <form th:action="@{/updateProduct}" method="get" style="display: inline-block;">
+            <button  class="btn btn-sm btn-primary" type="Submit" >Add</button>
+            </form>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+		</div>
+	
+<footer class="footer">
+    <div class="container">
+        <div class="row">
+  <div class="column">
+    <div align="left">
+      <div class="container">
+        <p> About US<p>
+        <p>What started small, with a single discount store and the simple
+			idea of selling more for less.</p>
+		<p>We have Organic fruits and vegetables are grown without using
+			most conventional pesticides,</p>
+		<p>fertilizers made with synthetic ingredients or sewage sludge;
+			bioengineer seed or plants;</p>
+			<p>or ionizing radiation.</p>
+      </div>
+    </div>
+  </div>
+ <div text-align: right>
+        <p>Contact Us</p>
+        <p>Some text that describes me lorem ipsum ipsum lorem.</p>
+        <p>mike@example.com</p>
+      </div>
+    </div>
+    </div>
+  </footer>
+
+</body>
+</html>

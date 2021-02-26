@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Spring Security Tutorial</title>
+      <link rel="stylesheet" type="text/css" th:href="@{/css/productTable.css}"/>
+      <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}"/>
+</head>
+
+
+<body>
+
+<div class="container">
+	
+	<div class="table">
+		<div class="table-header">
+			<div class="header__item"><a id="name" class="filter__link" href="#">ProductCode</a></div>
+			<div class="header__item"><a id="wins" class="filter__link filter__link--number" href="#">ProductName</a></div>
+			<div class="header__item"><a id="draws" class="filter__link filter__link--number" href="#">Price</a></div>
+			<div class="header__item"><a id="losses" class="filter__link filter__link--number" href="#">PriceType</a></div>
+			<div class="header__item"><a id="total" class="filter__link filter__link--number" href="#">ProductType</a></div>
+		</div>
+		<div class="table-content">	
+		<div class="table-row" th:each="prod : ${AllProducts}">
+			<div class="table-data" th:text="${prod.productCode}"></div>
+			<div class="table-data" th:text="${prod.productName}"></div>
+			<div class="table-data" th:text="${prod.productPrice}"></div>
+			<div class="table-data" th:text="${prod.priceType}"></div>
+			<div class="table-data" th:text="${prod.productType}"></div>
+			</div>
+		</div>	
+	</div>
+</div>
+</body>
+</html>
