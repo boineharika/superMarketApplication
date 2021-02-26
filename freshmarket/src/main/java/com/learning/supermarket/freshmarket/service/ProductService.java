@@ -19,11 +19,16 @@ public class ProductService {
 	ProductRepository productRepository;
 	
 	public List<UpComingProducts>  getAllProducts(){
-	List<UpComingProducts> products = productRepository.findAll();
+	List<UpComingProducts> products = productRepository.findByStatus("Active");
 		return products;
 		
 	}
-/*	public List<UpComingProducts> deleteProduct(long id) {
+	public UpComingProducts addProduct(UpComingProducts product) {
+		UpComingProducts newProduct = productRepository.save(product);
+		return newProduct;
+	}
+	
+	public List<UpComingProducts> deleteProduct(long id) {
 		Optional<UpComingProducts> removeProduct = productRepository.findById(id);
 		UpComingProducts upComingProducts = removeProduct.get();
 		upComingProducts.setStatus("Deactive");
@@ -32,19 +37,7 @@ public class ProductService {
 		List<UpComingProducts> products = productRepository.findByStatus("Active");
 		return products;
 			
-	}*/
-	
-	
-	@PostMapping("/admin/deleteProduct/{prdId}")
-	public ModelAndView deleteProductId(@PathVariable("prdId") long prdId){
-		Optional<UpComingProducts> products = productRepository.findById(prdId);
-		//List<UpComingProducts> products = productService.deleteProduct(Long.parseLong(prdId.toString()));
-
-		ModelAndView mv = new ModelAndView();
-		mv.setViewName("admin/adminHome");
-		mv.addObject("AllProducts",products);
-		mv.addObject("userName", "welcome Admin");
-		return mv;
 	}
+	
 
 }

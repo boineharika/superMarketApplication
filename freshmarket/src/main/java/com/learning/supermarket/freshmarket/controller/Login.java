@@ -7,12 +7,13 @@ import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.learning.supermarket.freshmarket.entity.Contact;
+import com.learning.supermarket.freshmarket.entity.UpComingProducts;
 import com.learning.supermarket.freshmarket.entity.User;
 import com.learning.supermarket.freshmarket.service.ContactService;
 import com.learning.supermarket.freshmarket.service.ProductService;
@@ -22,6 +23,8 @@ import com.learning.supermarket.freshmarket.service.UserService;
 public class Login {
 	@Autowired
 	UserService userService;
+	@Autowired
+	ProductService productService;
 	@Autowired
 	ContactService conatctService;
 	
@@ -34,15 +37,29 @@ public class Login {
 	
 	@GetMapping("/home")
 	public ModelAndView homePage() {
+		List<UpComingProducts> products = productService.getAllProducts();
 		ModelAndView mv = new ModelAndView();
-		mv.setViewName("home");
+		mv.setViewName("userHomePage");
+		mv.addObject("AllProducts",products);
 		mv.addObject("userName", "welcome User");
 		return mv;
 	}
+	
 	@GetMapping("/admin/home")
 	public ModelAndView getAdminHomePage() {
+		List<UpComingProducts> products = productService.getAllProducts();
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("admin/adminHome");
+		mv.addObject("AllProducts",products);
+		mv.addObject("userName", "welcome Admin");
+		return mv;
+	}
+	@PostMapping("/admin/updateProducts")
+	public ModelAndView addProduct(@RequestBody UpComingProducts product) {
+		List<UpComingProducts> products = (List<UpComingProducts>) productService.addProduct(product);
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("admin/updateProducts");
+		mv.addObject("AllProducts",products);
 		mv.addObject("userName", "welcome Admin");
 		return mv;
 	}

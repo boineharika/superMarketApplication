@@ -4,6 +4,8 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -29,4 +31,14 @@ public class ProductController {
 		return mv;
 	}
 
+	@PostMapping("/admin/deleteProduct/{prdId}")
+	public ModelAndView deleteProductId(@PathVariable("prdId") Integer prdId){
+		List<UpComingProducts> products = productService.deleteProduct(Long.parseLong(prdId.toString()));
+
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("admin/adminHome");
+		mv.addObject("AllProducts",products);
+		mv.addObject("userName", "welcome Admin");
+		return mv;
+	}
 }
