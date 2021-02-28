@@ -41,3 +41,20 @@ input[type="password"] {
     border-top-left-radius: 0;
     border-top-right-radius: 0;
 }
+.header {
+  padding: 5px 0px;
+  background: #555;
+  color: #f1f1f1;
+  text-align: center
+}
+ .footer {
+  padding: -5px 0px;
+  background: #555;
+  color: #f1f1f1;
+} 
+.column {
+  float: left;
+  width: 50%;
+}
+
+}

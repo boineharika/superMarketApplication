@@ -38,6 +38,15 @@ public class ProductService {
 		return products;
 			
 	}
+	public UpComingProducts findByProductCode(String productCode) {
+		UpComingProducts getProductCode = productRepository.findByProductCode(productCode);
+		return getProductCode;
+	}
 	
+	public UpComingProducts addNewProduct(UpComingProducts product) {
+		UpComingProducts newProduct = productRepository.save(product);
+		return newProduct;
+		
+	}
 
 }

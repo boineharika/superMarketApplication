@@ -11,5 +11,7 @@ import com.learning.supermarket.freshmarket.entity.UpComingProducts;
 public interface ProductRepository extends JpaRepository<UpComingProducts, Long>{
 
 	List<UpComingProducts> findByStatus(String string);
+	
+	UpComingProducts findByProductCode(String productCode);
 
 }
